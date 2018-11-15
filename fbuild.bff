@@ -1,0 +1,54 @@
+#import DEVDIR
+#import CONFIGURATION
+#import CXX_FLAGS
+
+// configuration
+.configuration = "$CONFIGURATION$"
+
+// compiler flags
+.cxxflags = "$CXX_FLAGS$"
+// warnings
+    + " -Wall"
+// architecture
+    + " -m64 -msse4.2 -mfpmath=sse"
+// compiling
+    + " -std=c++17 -fno-ident -nostdinc"
+// assembly listing
+    + " -masm=intel --save-temps=obj"
+
+// paths
+.clangdir = "$DEVDIR$\Tools\clang\bin"
+.outdir = ".bin\$configuration$"
+.tempdir = ".tmp\$configuration$"
+
+// build parameters
+.Compiler = "$clangdir$\clang++.exe"
+.CompilerOptions = "$cxxflags$ -I-"
+
+.Linker = "$clangdir$\lld-link.exe"
+.LinkerOptions  = "/machine:x64 /debug /out:%2 /pdb:%2.pdb %1"
+
+Settings
+{
+    .CachePath = "$tempdir$"
+}
+
+ObjectList("app-lib")
+{
+    .CompilerOptions = "$cxxflags$ -c %1 -o %2"
+    .CompilerInputPath = "projects\app"
+    .CompilerOutputPath = "$tempdir$\app"
+}
+
+Executable("app")
+{
+    .Libraries = { "app-lib" }
+    .StaticLibs = "libs\kernel32.lib"
+    .LinkerOutput = "$outdir$\app.exe"
+    .LinkerOptions + " $StaticLibs$ /subsystem:console /entry:mainCRTstartup"
+}
+
+Alias("all") 
+{ 
+    .Targets = { "app" } 
+}

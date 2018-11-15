@@ -1,0 +1,33 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.bin": true,
+        "**/.tmp": true,
+        "fbuild.fdb": true
+    },
+    "editor.lineNumbers": "on",
+    "editor.fontSize": 15,
+    "C_Cpp.intelliSenseEngine": "Default",
+    "C_Cpp.autocomplete": "Default",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "[cpp]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.insertSpaces": true,
+        "editor.autoIndent": true,
+        "editor.tabSize": 4,
+        "editor.renderIndentGuides": true,
+        "editor.detectIndentation": false
+    },
+    "files.associations": {
+        "ostream": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xmemory0": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "cstddef": "cpp",
+        "algorithm": "cpp"
+    }
+}

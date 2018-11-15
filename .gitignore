@@ -1,0 +1,8 @@
+.bin
+.tmp
+
+libs/*.exp
+libs/*.lib
+
+.help/*_help.txt
+*.fdb
